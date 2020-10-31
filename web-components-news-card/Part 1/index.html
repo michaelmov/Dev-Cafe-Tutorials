@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Components - News Card - Part 2</title>
+  </head>
+  <style>
+    /* General */
+    @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap');
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Merriweather', serif;
+      background-color: lightgrey;
+    }
+
+    main {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+    }
+
+    news-card {
+      margin: 1.5rem;
+    }
+
+    h1 {
+      text-align: center;
+      color: gray;
+      width: 100%;
+    }
+
+    /* News Card */
+    .card {
+      display: block;
+      position: relative;
+      font: inherit;
+      background-color: #ffffff;
+      border-radius: 5px;
+      transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+      cursor: pointer;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 50px -17px rgba(0, 0, 0, 0.3),
+        0 3px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-inner {
+      display: flex;
+      align-items: stretch;
+      min-height: 180px;
+      max-height: 180px;
+      min-width: 400px;
+      height: 100%;
+      width: 100%;
+    }
+
+    .img {
+      width: 40%;
+      object-fit: cover;
+    }
+
+    .content {
+      padding: 1rem;
+      width: 60%;
+    }
+
+    .content p {
+      display: -webkit-box;
+      -webkit-line-clamp: 3; /* number of lines to show */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .title {
+      font-size: 1.2rem;
+      margin-top: 0;
+      font-weight: 900;
+      display: -webkit-box;
+      -webkit-line-clamp: 2; /* number of lines to show */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: left;
+      color: #000000;
+    }
+  </style>
+  <body>
+    <main>
+      <div class="container">
+        <h1>Uplifting News</h1>
+        <div id="news">
+          <article class="card">
+            <div class="card-inner">
+              <img src="https://images.unsplash.com/photo-1603996331944-dcb02c639178?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=4608&q=80" class="img" />
+              <div class="content">
+                <h1 class="title">Hello Planet Earth</h1>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet consectetur, adipisicing elit.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
