@@ -2,7 +2,7 @@
 :root {
   --nav-bar-height: 70px;
   --nav-drawer-width: 350px;
-  --transition-length: 0.8s;
+  --transition-length: 0.6s;
 }
 * {
   margin: 0;
@@ -13,10 +13,22 @@
 body {
   font-family: 'Merriweather', serif;
   overflow-x: hidden;
+  perspective: 750px;
+  overflow: hidden;
+  transition: background-color var(--transition-length) ease-in-out;
+}
+
+.main-wrapper {
+  height: 100vh;
+  width: 100vw;
+  overflow: auto;
+  transition: transform var(--transition-length) ease-in-out;
+  /* transform-origin: right; */
 }
 
 main {
   transition: transform var(--transition-length) ease;
+  background-color: white;
 }
 
 /* General */
@@ -36,7 +48,7 @@ main {
   position: fixed;
 }
 
-/* Hamburger Menu */
+/* Menu open/close buttons */
 .menu-btn {
   position: relative;
   background: none;
@@ -67,6 +79,39 @@ main {
 
 .menu-btn .hamburger:after {
   bottom: 0;
+}
+
+.close-btn {
+  position: absolute;
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+  height: 30px;
+  width: 30px;
+  right: 20px;
+  top: 20px;
+}
+
+.close-btn:before,
+.close-btn:after {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 3px;
+  border-radius: 3px;
+  background-color: white;
+  left: 0;
+}
+
+.close-btn:before {
+  transform: rotate(-45deg);
+  top: 13px;
+}
+
+.close-btn:after {
+  transform: rotate(45deg);
+  bottom: 13px;
 }
 
 /* Hero */
@@ -135,6 +180,7 @@ main {
 }
 
 .nav-drawer-inner {
+  position: relative;
   height: 100%;
   width: 100%;
   transform: rotateY(100deg);
@@ -143,6 +189,9 @@ main {
   background-color: black;
   transition: transform var(--transition-length) ease-in-out;
   padding: 5rem 0;
+  box-shadow: 5px 2px 5px 1px rgb(22, 22, 22);
+  display: flex;
+  align-items: center;
 }
 
 .nav-drawer ul {
@@ -161,6 +210,11 @@ main {
   text-decoration: none;
 }
 
+/* Open state */
+body.is-open {
+  background-color: rgb(32, 32, 32);
+}
+
 body.is-open header,
 body.is-open main {
   transform: translateX(var(--nav-drawer-width));
@@ -171,4 +225,8 @@ body.is-open .nav-drawer {
 }
 body.is-open .nav-drawer-inner {
   transform: rotateY(0);
+}
+
+body.is-open .main-wrapper {
+  transform: rotateY(-25deg);
 }
