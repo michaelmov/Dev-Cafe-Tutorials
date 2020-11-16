@@ -13,9 +13,9 @@
 body {
   font-family: 'Merriweather', serif;
   overflow-x: hidden;
-  perspective: 750px;
   overflow: hidden;
   transition: background-color var(--transition-length) ease-in-out;
+  perspective: 750px;
 }
 
 .main-wrapper {
@@ -175,8 +175,8 @@ main {
   bottom: 0;
   height: 100%;
   z-index: -1;
-  perspective: 1000px;
   position: fixed;
+  perspective: 1000px;
 }
 
 .nav-drawer-inner {
