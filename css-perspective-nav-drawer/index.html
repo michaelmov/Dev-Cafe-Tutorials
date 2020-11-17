@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CSS Perspective Nav Drawer</title>
+    <!-- Let's link up our style.css -->
     <link rel="stylesheet" href="style.css" />
+    <!-- Also, let's load up a font -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;900&display=swap"
@@ -12,7 +14,9 @@
     />
   </head>
   <body>
+    <!-- First, lay out the  nav rawer -->
     <nav class="nav-drawer">
+      <!-- Because we will be applying the perspective property to the parent element (viewfinder), we need to make sure there is a child (subject) that we can transform -->
       <div class="nav-drawer-inner">
         <button class="close-btn" id="close-btn"></button>
         <ul>
@@ -24,6 +28,7 @@
       </div>
     </nav>
     <div class="main-wrapper">
+      <!-- main-wrapper is also our subject while <body> is our viewfinder. This will become more clear once we get into the CSS -->
       <header class="navbar container">
         <button class="menu-btn" id="menu-btn">
           <div class="hamburger"></div>

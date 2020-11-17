@@ -1,37 +1,40 @@
 /* Reset */
+
 :root {
+  /* Start with some basic variables to re-use*/
   --nav-bar-height: 70px;
   --nav-drawer-width: 350px;
   --transition-length: 0.6s;
 }
+
+/* Basic resets */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* General */
 body {
   font-family: 'Merriweather', serif;
   overflow-x: hidden;
   overflow: hidden;
-  transition: background-color var(--transition-length) ease-in-out;
-  perspective: 750px;
+  transition: background-color var(--transition-length) ease-in-out; /* We will want to transition the background color */
+  perspective: 750px; /* Remember, we want to put the perspective on the parent element (our viewfinder)*/
 }
 
 .main-wrapper {
+  /* This is our subject. The thing we will be rotating */
   height: 100vh;
   width: 100vw;
   overflow: auto;
   transition: transform var(--transition-length) ease-in-out;
-  /* transform-origin: right; */
 }
 
 main {
-  transition: transform var(--transition-length) ease;
   background-color: white;
 }
 
-/* General */
 .container {
   padding: 0 2rem;
 }
@@ -43,7 +46,6 @@ main {
   top: 0;
   display: flex;
   align-items: center;
-  transition: transform var(--transition-length) ease;
   z-index: 1;
   position: fixed;
 }
@@ -114,9 +116,10 @@ main {
   bottom: 13px;
 }
 
-/* Hero */
+/* Hero
+ * Let's create a Hero section with a background image
+*/
 .hero {
-  margin-top: calc(var(--nav-bar-height) * -1);
   height: 700px;
   background-image: url('https://images.unsplash.com/photo-1485601284679-a2f86e6f7dea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80');
   background-repeat: no-repeat;
@@ -129,6 +132,7 @@ main {
 }
 
 .hero:after {
+  /* This will be an overlay on top of the image */
   position: absolute;
   left: 0;
   right: 0;
@@ -137,10 +141,10 @@ main {
   content: '';
   background-color: black;
   opacity: 0.3;
-  z-index: 0;
 }
 
 .hero .container {
+  /* We want to make sure that the text appears above the overlay */
   z-index: 1;
 }
 
@@ -149,7 +153,9 @@ main {
   letter-spacing: 0.6rem;
 }
 
-/* Info */
+/* Info
+ * Now, let's style the about section
+*/
 .info {
   margin: 3rem 0;
   display: flex;
@@ -176,7 +182,7 @@ main {
   height: 100%;
   z-index: -1;
   position: fixed;
-  perspective: 1000px;
+  perspective: 1000px; /* Again, this is our parent element, or viewfinder through which we are looking at the subject (nav-drawer) */
 }
 
 .nav-drawer-inner {
@@ -184,7 +190,7 @@ main {
   height: 100%;
   width: 100%;
   transform: rotateY(100deg);
-  transform-origin: left;
+  transform-origin: left; /* Here, we want to change our transform origin so that we are rotating it from the left. */
   color: white;
   background-color: black;
   transition: transform var(--transition-length) ease-in-out;
@@ -210,14 +216,12 @@ main {
   text-decoration: none;
 }
 
-/* Open state */
+/* Open state
+ * Here we define the state of each element that will be transitioned when menu is open. 
+ * We will use a class called 'is-open' which will be applied/removed to and from the body when menu and close icons are clicked respectively. 
+*/
 body.is-open {
   background-color: rgb(32, 32, 32);
-}
-
-body.is-open header,
-body.is-open main {
-  transform: translateX(var(--nav-drawer-width));
 }
 
 body.is-open .nav-drawer {
@@ -228,5 +232,6 @@ body.is-open .nav-drawer-inner {
 }
 
 body.is-open .main-wrapper {
-  transform: rotateY(-25deg);
+  /* We will not only rotate the main-wrapper, but also slide it to the right a bit */
+  transform: rotateY(-25deg) translateX(var(--nav-drawer-width));
 }
