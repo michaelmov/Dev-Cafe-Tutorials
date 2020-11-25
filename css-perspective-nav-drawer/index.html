@@ -10,25 +10,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;900&display=swap"
-      rel="stylesheet"xl
+      rel="stylesheet"
     />
   </head>
   <body>
-    <!-- First, lay out the  nav rawer -->
-    <nav class="nav-drawer">
-      <!-- Because we will be applying the perspective property to the parent element (viewfinder), we need to make sure there is a child (subject) that we can transform -->
-      <div class="nav-drawer-inner">
-        <button class="close-btn" id="close-btn"></button>
-        <ul>
-          <li><a href="#">Places to Visit</a></li>
-          <li><a href="#">Tours</a></li>
-          <li><a href="#">Hotels</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
+    <!-- First, let's create a main wrapper. This will become more clear once we get into the CSS -->
     <div class="main-wrapper">
-      <!-- main-wrapper is also our subject while <body> is our viewfinder. This will become more clear once we get into the CSS -->
       <header class="navbar container">
         <button class="menu-btn" id="menu-btn">
           <div class="hamburger"></div>
@@ -49,6 +36,19 @@
         </section>
       </main>
     </div>
+    <!-- Lastly, lay out the  nav drawer -->
+    <nav class="nav-drawer">
+      <!-- Because we will be applying the perspective property to the parent element (viewfinder), we need to make sure there is a child (subject) that we can transform -->
+      <div class="nav-drawer-inner">
+        <button class="close-btn" id="close-btn"></button>
+        <ul>
+          <li><a href="#">Places to Visit</a></li>
+          <li><a href="#">Tours</a></li>
+          <li><a href="#">Hotels</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
     <script src="./app.js"></script>
   </body>
 </html>

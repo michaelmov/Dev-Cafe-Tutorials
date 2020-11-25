@@ -1,17 +1,15 @@
-/* Reset */
-
-:root {
-  /* Start with some basic variables to re-use*/
-  --nav-bar-height: 70px;
-  --nav-drawer-width: 350px;
-  --transition-length: 0.6s;
-}
-
 /* Basic resets */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+/* Start with some basic variables to re-use */
+:root {
+  --nav-bar-height: 70px;
+  --nav-drawer-width: 350px;
+  --transition-length: 0.6s;
 }
 
 /* General */
@@ -50,7 +48,7 @@ main {
   position: fixed;
 }
 
-/* Menu open/close buttons */
+/* Menu open/close buttons (copy these) */
 .menu-btn {
   position: relative;
   background: none;
@@ -232,6 +230,6 @@ body.is-open .nav-drawer-inner {
 }
 
 body.is-open .main-wrapper {
-  /* We will not only rotate the main-wrapper, but also slide it to the right a bit */
+  /* We will not only rotate the main-wrapper, but also slide it to the right a bit for smaller screens */
   transform: rotateY(-25deg) translateX(var(--nav-drawer-width));
 }
