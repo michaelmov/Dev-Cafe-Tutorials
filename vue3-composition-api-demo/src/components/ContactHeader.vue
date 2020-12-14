@@ -12,15 +12,19 @@
 </template>
 
 <script>
+import { ref } from 'vue'
+
 export default {
-  data () {
-    return {
-      searchQuery: ''
+  setup (props, { emit }) {
+    const searchQuery = ref('')
+
+    function onSearchChange () {
+      emit('search', searchQuery)
     }
-  },
-  methods: {
-    onSearchChange () {
-      this.$emit('search', this.searchQuery)
+
+    return {
+      searchQuery,
+      onSearchChange
     }
   }
 }
