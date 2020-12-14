@@ -11,49 +11,26 @@
 // 1. Create all refs and group them together
 // 2. Move refs close to corresponding methods and explain grouping advantage
 // 3. Create all methods
+// 4. Refactor contacts to useContacts hook to show where things get interesting with codd reuse.
 
 import ContactHeader from './components/ContactHeader'
 import ContactCard from './components/ContactCard'
-import { getContacts } from './services/contacts.service'
-import { ref, computed, onMounted } from 'vue'
+import useContacts from './hooks/useContacts'
 
 export default {
   name: 'App',
   components: { ContactHeader, ContactCard },
   setup (props) {
-    const isLoading = ref(false)
-
-    const search = ref('')
+    const { isLoading, search, filteredContacts } = useContacts()
     function searchContact (query) {
       search.value = query
     }
 
-    const contacts = ref([])
-    async function fetchContacts () {
-      try {
-        isLoading.value = true
-        contacts.value = await getContacts()
-      } catch (error) {
-        console.log(error)
-      } finally {
-        isLoading.value = false
-      }
-    }
-    onMounted(fetchContacts)
-
-    const filteredContacts = computed(() => {
-      return contacts.value.filter(contact => {
-        const fullName = `${contact.name?.first} ${contact.name?.last}`
-        return fullName.toLowerCase().includes(search.value.toLowerCase())
-      })
-    })
-
     return {
-      isLoading,
-      contacts,
       search,
       filteredContacts,
-      searchContact
+      searchContact,
+      isLoading
     }
   }
 }
