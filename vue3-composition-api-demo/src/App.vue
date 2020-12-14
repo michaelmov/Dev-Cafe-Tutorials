@@ -10,6 +10,7 @@
 <script>
 import ContactHeader from './components/ContactHeader'
 import ContactCard from './components/ContactCard'
+import { getUsers } from './services/contacts.service'
 
 export default {
   name: 'App',
@@ -24,13 +25,13 @@ export default {
   computed: {
     filteredContacts () {
       return this.contacts.filter(contact => {
-        const fullName = `${contact.name?.first?.toLowerCase()} ${contact.name?.last?.toLowerCase()}`
-        return fullName.includes(this.search.toLowerCase())
+        const fullName = `${contact.name?.first} ${contact.name?.last}`
+        return fullName.toLowerCase().includes(this.search.toLowerCase())
       })
     }
   },
   async mounted () {
-    this.contacts = await this.fetchUsers()
+    await this.fetchUsers()
   },
   methods: {
     searchContact (query) {
@@ -39,9 +40,7 @@ export default {
     async fetchUsers () {
       try {
         this.isLoading = true
-        const response = await fetch('https://randomuser.me/api/?results=50&nat=US')
-        const users = await response.json()
-        return users.results
+        this.contacts = await getUsers()
       } catch (error) {
         console.log(error)
       } finally {
