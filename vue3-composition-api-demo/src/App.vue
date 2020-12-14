@@ -10,7 +10,7 @@
 <script>
 import ContactHeader from './components/ContactHeader'
 import ContactCard from './components/ContactCard'
-import { getUsers } from './services/contacts.service'
+import { getContacts } from './services/contacts.service'
 
 export default {
   name: 'App',
@@ -31,16 +31,16 @@ export default {
     }
   },
   async mounted () {
-    await this.fetchUsers()
+    await this.fetchContacts()
   },
   methods: {
     searchContact (query) {
       this.search = query
     },
-    async fetchUsers () {
+    async fetchContacts () {
       try {
         this.isLoading = true
-        this.contacts = await getUsers()
+        this.contacts = await getContacts()
       } catch (error) {
         console.log(error)
       } finally {
