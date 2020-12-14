@@ -11,7 +11,8 @@
 // 1. Create all refs and group them together
 // 2. Move refs close to corresponding methods and explain grouping advantage
 // 3. Create all methods
-// 4. Refactor contacts to useContacts hook to show where things get interesting with codd reuse.
+// 4. Refactor contacts to useContacts hook to show where things get interesting with codd reusability
+// 5. Talk about how this is different from mixins
 
 import ContactHeader from './components/ContactHeader'
 import ContactCard from './components/ContactCard'
