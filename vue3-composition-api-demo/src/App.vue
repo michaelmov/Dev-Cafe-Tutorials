@@ -8,44 +8,52 @@
 </template>
 
 <script>
+// 1. Create all refs and group them together
+// 2. Move refs close to corresponding methods and explain grouping advantage
+// 3. Create all methods
+
 import ContactHeader from './components/ContactHeader'
 import ContactCard from './components/ContactCard'
 import { getContacts } from './services/contacts.service'
+import { ref, computed, onMounted } from 'vue'
 
 export default {
   name: 'App',
   components: { ContactHeader, ContactCard },
-  data () {
-    return {
-      isLoading: false,
-      contacts: [],
-      search: ''
+  setup (props) {
+    const isLoading = ref(false)
+
+    const search = ref('')
+    function searchContact (query) {
+      search.value = query
     }
-  },
-  computed: {
-    filteredContacts () {
-      return this.contacts.filter(contact => {
-        const fullName = `${contact.name?.first} ${contact.name?.last}`
-        return fullName.toLowerCase().includes(this.search.toLowerCase())
-      })
-    }
-  },
-  async mounted () {
-    await this.fetchContacts()
-  },
-  methods: {
-    searchContact (query) {
-      this.search = query
-    },
-    async fetchContacts () {
+
+    const contacts = ref([])
+    async function fetchContacts () {
       try {
-        this.isLoading = true
-        this.contacts = await getContacts()
+        isLoading.value = true
+        contacts.value = await getContacts()
       } catch (error) {
         console.log(error)
       } finally {
-        this.isLoading = false
+        isLoading.value = false
       }
+    }
+    onMounted(fetchContacts)
+
+    const filteredContacts = computed(() => {
+      return contacts.value.filter(contact => {
+        const fullName = `${contact.name?.first} ${contact.name?.last}`
+        return fullName.toLowerCase().includes(search.value.toLowerCase())
+      })
+    })
+
+    return {
+      isLoading,
+      contacts,
+      search,
+      filteredContacts,
+      searchContact
     }
   }
 }

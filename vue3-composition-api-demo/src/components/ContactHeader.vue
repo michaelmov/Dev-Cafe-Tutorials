@@ -12,6 +12,8 @@
 </template>
 
 <script>
+// 1. Refactor to use refs
+
 import { ref } from 'vue'
 
 export default {
@@ -19,7 +21,7 @@ export default {
     const searchQuery = ref('')
 
     function onSearchChange () {
-      emit('search', searchQuery)
+      emit('search', searchQuery.value)
     }
 
     return {
