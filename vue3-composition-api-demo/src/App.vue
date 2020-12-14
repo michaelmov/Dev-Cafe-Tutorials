@@ -33,8 +33,8 @@ export default {
     this.contacts = await this.fetchUsers()
   },
   methods: {
-    searchContact (phrase) {
-      this.search = phrase
+    searchContact (query) {
+      this.search = query
     },
     async fetchUsers () {
       try {

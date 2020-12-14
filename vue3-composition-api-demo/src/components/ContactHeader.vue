@@ -2,7 +2,7 @@
   <header class="header">
     <h1>My Contacts</h1>
     <input class="search"
-      v-model="searchTerm"
+      v-model="searchQuery"
       @input="onSearchChange"
       type="text"
       name="search"
@@ -15,12 +15,12 @@
 export default {
   data () {
     return {
-      searchTerm: ''
+      searchQuery: ''
     }
   },
   methods: {
     onSearchChange () {
-      this.$emit('search', this.searchTerm)
+      this.$emit('search', this.searchQuery)
     }
   }
 }
