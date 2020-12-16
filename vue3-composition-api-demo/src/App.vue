@@ -14,15 +14,39 @@
 // 4. Refactor contacts to useContacts hook to show where things get interesting with codd reusability
 // 5. Talk about how this is different from mixins
 
+import { ref, computed, onMounted } from 'vue'
 import ContactHeader from './components/ContactHeader'
 import ContactCard from './components/ContactCard'
-import useContacts from './hooks/useContacts'
+import { getContacts } from './services/contacts.service'
+// import useContacts from './hooks/useContacts'
 
 export default {
   name: 'App',
   components: { ContactHeader, ContactCard },
   setup (props) {
-    const { isLoading, search, filteredContacts } = useContacts()
+    onMounted(fetchContacts)
+    // const { isLoading, search, filteredContacts } = useContacts()
+    const search = ref('')
+    const isLoading = ref(false)
+
+    const contacts = ref([])
+    async function fetchContacts () {
+      try {
+        isLoading.value = true
+        contacts.value = await getContacts()
+      } catch (error) {
+        console.log(error)
+      } finally {
+        isLoading.value = false
+      }
+    }
+    const filteredContacts = computed(() => {
+      return contacts.value.filter(contact => {
+        const fullName = `${contact.name?.first} ${contact.name?.last}`
+        return fullName.toLowerCase().includes(search.value.toLowerCase())
+      })
+    })
+
     function searchContact (query) {
       search.value = query
     }
