@@ -12,7 +12,7 @@
 </template>
 
 <script>
-// 1. We'll import something called a ref...
+// 1. We'll import a method called a ref...
 import { ref } from 'vue'
 
 export default {
