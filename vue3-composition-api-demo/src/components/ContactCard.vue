@@ -17,19 +17,14 @@
 </template>
 
 <script>
-// 2. Next we are going to import this 'computed' method from vue
 import { computed } from 'vue'
 
 export default {
   props: { contact: Object },
-  // 1. With Vue 3 we get this setup option that takes in props as an argument.
-  // As you might have guessed, the props object contains all of our props
   setup (props) {
-    // 3. Then we will create a const, which will take in a callback that returns our computed output.
     const fullName = computed(() => `${props.contact?.name?.first} ${props.contact?.name?.last}`)
     const location = computed(() => `${props.contact?.location?.city},  ${props.contact?.location?.country}`)
 
-    // 4. Lastly, we will return both to make them available in our template.
     return { fullName, location }
   }
 }
