@@ -15,7 +15,7 @@ import store from '../store'
 
 export default {
   name: 'add-task-input',
-  setup (props, { emit }) {
+  setup (props) {
     const task = ref('')
 
     function inputIsSubmitted (evt) {
