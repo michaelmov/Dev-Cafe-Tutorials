@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="addItem" class="w-full flex">
+  <form @submit.prevent="inputIsSubmitted" class="w-full flex">
     <input v-model="task"
       type="text"
       class="w-full border-green-600 border-solid border rounded-l-md px-2">
@@ -17,7 +17,7 @@ export default {
   setup (props, { emit }) {
     const task = ref('')
 
-    function addItem (evt) {
+    function inputIsSubmitted (evt) {
       if (task.value.trim()) {
         const newTask = new Task({ title: task.value })
         emit('add-task', newTask)
@@ -25,7 +25,7 @@ export default {
       }
     }
 
-    return { task, addItem }
+    return { task, inputIsSubmitted }
   }
 }
 </script>
