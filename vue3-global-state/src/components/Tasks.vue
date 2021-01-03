@@ -1,8 +1,8 @@
 <template>
   <div class="h-96 max-h-96 p-8 bg-white overflow-auto rounded-md">
     <add-task-input class="mb-8"/>
-    <p v-if="!tasks || tasks.length < 1" class="text-center text-gray-400">No tasks available</p>
-    <task-item v-else v-for="task in tasks" :key="task.id" :task="task" />
+    <p v-if="allTasks?.length < 1" class="text-center text-gray-400">No tasks available</p>
+    <task-item v-else v-for="task in allTasks" :key="task.id" :task="task" />
   </div>
 </template>
 
@@ -15,8 +15,9 @@ export default {
   name: 'tasks',
   components: { AddTaskInput, TaskItem },
   setup (props, { emit }) {
-    const tasks = store.state.allTasks
-    return { tasks }
+    const { allTasks } = store.state
+
+    return { allTasks }
   }
 }
 </script>
