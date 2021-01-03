@@ -2,7 +2,7 @@
   <div class="h-96 max-h-96 p-8 bg-white overflow-auto rounded-md">
     <add-task-input class="mb-8" @add-task="addTask" />
     <p v-if="!allTasks || allTasks.length < 1" class="text-center text-gray-400">No tasks available</p>
-    <task-item v-else v-for="task in allTasks" :key="task.id" :task="task" @toggle-complete="toggleCompleteTask" />
+    <task-item v-else v-for="task in allTasks" :key="task.id" :task="task" @toggle-complete="toggleCompleteTask" @delete="deleteTask" />
   </div>
 </template>
 
@@ -21,12 +21,16 @@ export default {
       allTasks.value.push(task)
     }
 
-    function toggleCompleteTask (taskId) {
-      const foundTask = allTasks.value.find(item => item.id === taskId)
-      foundTask.isComplete = !foundTask.isComplete
+    function toggleCompleteTask (task) {
+      task.isComplete = !task.isComplete
     }
 
-    return { allTasks, addTask, toggleCompleteTask }
+    function deleteTask (task) {
+      const index = allTasks.value.indexOf(task)
+      allTasks.value.splice(index, 1)
+    }
+
+    return { allTasks, addTask, toggleCompleteTask, deleteTask }
   }
 }
 </script>

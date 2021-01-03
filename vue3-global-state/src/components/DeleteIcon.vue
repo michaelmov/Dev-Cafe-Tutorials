@@ -1,0 +1,15 @@
+
+<template>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <polyline points="3 7 5 7 21 7" fill="none" stroke="#000"/>
+    <path d="M18.5,7l-1,14H6.5L5.5,7M8,7l.5-3.5h7L16,7" fill="none" stroke="#000"/>
+    <line x1="13.5" y1="16.5" x2="13.5" y2="11.5" fill="none" stroke="#000"/>
+    <line x1="10.5" y1="16.5" x2="10.5" y2="11.5" fill="none" stroke="#000"/>
+  </svg>
+</template>
+
+<script>
+export default {
+  name: 'delete-icon'
+}
+</script>
