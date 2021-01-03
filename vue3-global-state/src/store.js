@@ -10,13 +10,13 @@ function addTask (task) {
   state.allTasks.push(task)
 }
 
-function toggleCompleteTask (taskId) {
-  const foundTask = state.allTasks.find(item => item.id === taskId)
-  foundTask.isComplete = !foundTask.isComplete
+function toggleCompleteTask (task) {
+  const index = state.allTasks.indexOf(task)
+  state.allTasks[index].isComplete = !state.allTasks[index].isComplete
 }
 
-function deleteTask (taskId) {
-  const index = state.allTasks.findIndex(item => item.id === taskId)
+function deleteTask (task) {
+  const index = state.allTasks.indexOf(task)
   state.allTasks.splice(index, 1)
 }
 

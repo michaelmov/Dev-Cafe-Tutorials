@@ -26,13 +26,14 @@ export default {
   components: { DeleteIcon },
   props: { task: Task },
   setup (props) {
-    const { toggleCompleteTask } = store.actions
+    const { toggleCompleteTask, deleteTask } = store.actions
+
     function toggleTaskCompletion () {
-      toggleCompleteTask(props.task.id)
+      toggleCompleteTask(props.task)
     }
 
     function onDeleteClick () {
-      store.actions.deleteTask(props.task.id)
+      deleteTask(props.task)
     }
 
     return { toggleTaskCompletion, onDeleteClick }
