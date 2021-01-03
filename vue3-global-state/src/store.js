@@ -15,7 +15,12 @@ function toggleCompleteTask (taskId) {
   foundTask.isComplete = !foundTask.isComplete
 }
 
+function deleteTask (taskId) {
+  const index = state.allTasks.findIndex(item => item.id === taskId)
+  state.allTasks.splice(index, 1)
+}
+
 export default {
   state: readonly(state),
-  actions: { addTask, toggleCompleteTask }
+  actions: { addTask, toggleCompleteTask, deleteTask }
 }
