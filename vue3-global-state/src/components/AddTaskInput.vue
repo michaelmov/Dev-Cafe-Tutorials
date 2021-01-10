@@ -17,11 +17,12 @@ export default {
   name: 'add-task-input',
   setup (props) {
     const task = ref('')
+    const { addTask } = store.actions
 
     function inputIsSubmitted (evt) {
       if (task.value.trim()) {
         const newTask = new Task({ title: task.value })
-        store.actions.addTask(newTask)
+        addTask(newTask)
         task.value = ''
       }
     }
